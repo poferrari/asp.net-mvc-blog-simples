@@ -7,11 +7,7 @@ namespace BlogPessoal.Web.Controllers
     public class CategoriasDeArtigoController : Controller
     {
         public ActionResult Index()
-        {
-            using (var ctx = new BlogPessoalContexto())
-            {
-                var categorias = ctx.CategoriaDeArtigo.ToList();
-            }
+        {            
             return View();
         }
     }
