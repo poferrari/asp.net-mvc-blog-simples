@@ -18,7 +18,7 @@ namespace BlogPessoal.Web.Data.Mapeamento
             Property(x => x.AutorId).IsRequired().HasColumnName("autor_id");
             Property(x => x.Removido).IsRequired();
 
-            HasRequired(t => t.CategoriasDeArtigo)
+            HasRequired(t => t.CategoriaDeArtigo)
                 .WithMany(t => t.Artigos)
                 .HasForeignKey(t => t.CategoriaDeArtigoId)
                 .WillCascadeOnDelete(false);

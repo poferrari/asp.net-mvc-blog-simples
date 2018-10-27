@@ -14,7 +14,7 @@ namespace BlogPessoal.Web.Models.Artigos
         public int AutorId { get; set; }
         public bool Removido { get; set; }
 
-        public virtual CategoriaDeArtigo CategoriasDeArtigo { get; set; }
+        public virtual CategoriaDeArtigo CategoriaDeArtigo { get; set; }
         public virtual Autor Autor { get; set; }
     }
 }
