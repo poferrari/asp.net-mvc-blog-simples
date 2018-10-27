@@ -8,7 +8,7 @@ namespace BlogPessoal.Web.Data.Contexto
 {
     public class BlogPessoalContexto : DbContext
     {
-        public DbSet<CategoriaDeArtigo> CategoriaDeArtigo { get; set; }
+        public DbSet<CategoriaDeArtigo> CategoriasDeArtigo { get; set; }
         public DbSet<Artigo> Artigos { get; set; }
         public DbSet<Autor> Autores { get; set; }
 
