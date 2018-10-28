@@ -1,7 +1,34 @@
-﻿
+﻿@model IEnumerable<BlogPessoal.Web.Models.CategoriasDeArtigo.CategoriaDeArtigo>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nova categoria", "Create")
+</p>
+
+<table class="table" >
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Opções</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>
+                @Html.DisplayFor(t => item.Descricao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
 
