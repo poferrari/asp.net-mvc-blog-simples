@@ -1,39 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using BlogPessoal.Web.Data.Contexto;
+using BlogPessoal.Web.Models.Artigos;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using BlogPessoal.Web.Data.Contexto;
-using BlogPessoal.Web.Models.Artigos;
 
 namespace BlogPessoal.Web.Controllers
 {
+    [Authorize]
     public class ArtigosController : Controller
     {
         private BlogPessoalContexto db = new BlogPessoalContexto();
-
-        // GET: Artigos
+        
         public ActionResult Index()
         {
             var artigos = db.Artigos.Include(a => a.Autor).Include(a => a.CategoriaDeArtigo);
             return View(artigos.ToList());
         }
 
-        // GET: Artigos/Details/5
+        [AllowAnonymous]
+        [OutputCache(Duration = 20, VaryByParam = "id")]
         public ActionResult Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Artigo artigo = db.Artigos.Find(id);
             if (artigo == null)
-            {
                 return HttpNotFound();
-            }
             return View(artigo);
         }
 

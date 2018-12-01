@@ -1,0 +1,39 @@
+﻿@using BlogPessoal.Web.Models.Acesso
+@model Login
+
+@{
+    ViewBag.Title = "Acesso restrito";
+}
+
+<h2>Acesso restrito</h2>
+
+@using (Html.BeginForm("Entrar", "Acesso", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "frmLogin", data_toggle = "validator", role = "form", defaultbutton = "entrar" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        <div class="input-group">
+            <label for="Email" class="input-group-addon glyphicon glyphicon-envelope"></label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", placeholder = "E-mail", required = "required" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <label for="Senha" class="input-group-addon glyphicon glyphicon-lock"></label>
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha", required = "required" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Senha)
+    </div>
+    var erro = (string)ViewBag.ErroAuth;
+    if (!string.IsNullOrEmpty(erro))
+    {
+        <p>
+            <span class="field-validation-error">
+                @erro
+            </span>
+        </p>
+    }
+    <input id="entrar" class="btn btn-lg btn-success btn-block" type="submit" value="Entrar">
+}
+

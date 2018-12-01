@@ -1,0 +1,66 @@
+﻿@using BlogPessoal.Web.Models.CategoriasDeArtigo
+@model PagedList.IPagedList<CategoriaDeArtigo>
+
+@{
+    ViewBag.Title = "IndexPaged";
+}
+
+@section StyleContent{
+    <style>
+        .paginacao-centro {
+            text-align: center;
+        }
+        .espaco-botao {
+            padding-left: 10px;
+        }
+    </style>
+}
+
+<h2>Index PagedList</h2>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Opções</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>
+                @Html.DisplayFor(t => item.Descricao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="paginacao-centro" >
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<< Primeiro", "IndexPagedList", new { pagina = 1 }, new { @class = "espaco-botao" })
+
+        @Html.ActionLink("< Anterior", "IndexPagedList", new { pagina = Model.PageNumber - 1 }, new { @class = "espaco-botao" })
+    }
+
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Próximo >", "IndexPagedList", new { pagina = Model.PageNumber + 1 }, new { @class = "espaco-botao" })
+
+        @Html.ActionLink("Último >>", "IndexPagedList", new { pagina = Model.PageCount }, new { @class = "espaco-botao" })
+    }
+</div>
+
+<fieldset>
+    <p>
+        Registros encontrados: @Model.TotalItemCount
+    </p>
+    <p>
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    </p>
+</fieldset>

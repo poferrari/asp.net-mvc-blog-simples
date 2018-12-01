@@ -1,5 +1,6 @@
 ﻿using BlogPessoal.Web.Data.Contexto;
 using BlogPessoal.Web.Models.CategoriasDeArtigo;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -7,13 +8,27 @@ using System.Web.Mvc;
 
 namespace BlogPessoal.Web.Controllers
 {
+    [Authorize]
     public class CategoriasDeArtigoController : Controller
     {
+        private const int TotalPorPagina = 5;
         private BlogPessoalContexto db = new BlogPessoalContexto();
 
         public ActionResult Index()
+        {            
+            var lista = db.CategoriasDeArtigo
+                .OrderBy(t => t.Nome)
+                .ToList();
+            return View(lista);
+        }
+
+        public ActionResult IndexPagedList(int? pagina)
         {
-            var lista = db.CategoriasDeArtigo.ToList();
+            var paginaAtual = pagina ?? 1;
+
+            var lista = db.CategoriasDeArtigo
+                .OrderBy(t => t.Nome)
+                .ToPagedList(paginaAtual, TotalPorPagina);
             return View(lista);
         }
 

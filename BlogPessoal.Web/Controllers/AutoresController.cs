@@ -11,6 +11,7 @@ using BlogPessoal.Web.Models.Autores;
 
 namespace BlogPessoal.Web.Controllers
 {
+    [Authorize]
     public class AutoresController : Controller
     {
         private BlogPessoalContexto db = new BlogPessoalContexto();
@@ -36,15 +37,13 @@ namespace BlogPessoal.Web.Controllers
             return View(autor);
         }
 
-        // GET: Autores/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Autores/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,Email,Senha,Administrador,DataDeCadastro")] Autor autor)

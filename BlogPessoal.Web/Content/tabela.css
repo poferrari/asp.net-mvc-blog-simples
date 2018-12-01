@@ -1,0 +1,65 @@
+﻿.webgrid {
+    margin: 4px;
+    color: #333333;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: inherit;
+    border: 1px solid #CBCBCB;
+}
+
+    .webgrid tbody tr:hover {
+        background: #d1e8f8;
+    }
+
+.webgrid-header {
+    background: url("../Content/img/imgDegradeTituloColuna.png") repeat-x scroll 0 4px white;
+    padding: 6px 5px;
+    text-align: left;
+    color: #231F20;
+    font-weight: bold;
+    height: 32px;
+}
+
+    .webgrid-header a {
+        color: #147CC1;
+        font-size: 12px !important;
+        font-weight: normal !important;
+        text-decoration: none;
+    }
+
+        .webgrid-header a:hover {
+            text-decoration: underline;
+        }
+
+.webgrid-footer {
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    .webgrid-footer a {
+        color: #147CC1;
+        font-size: 12px !important;
+        font-weight: normal !important;
+        text-decoration: none;
+    }
+
+        .webgrid-footer a:hover {
+            text-decoration: underline;
+        }
+
+.webgrid-alternating-row {
+    height: 30px;
+    background-color: #f2f2f2;
+}
+
+.webgrid-row-style {
+    height: 30px;
+}
+
+.webgrid-selected-row {
+    font-weight: bold;
+}
