@@ -22,7 +22,7 @@ namespace BlogPessoal.Web.Controllers
                 TempData["ReturnUrl"] = returnUrl;
             var cookie = Request.Cookies["usuarioBlogPessoal"];
             if (cookie != null && !string.IsNullOrEmpty(cookie.Value))
-                return View(new Login { Email = cookie.Value });            
+                return View(new Login { Email = cookie.Value });
             return View();
         }
 
@@ -38,8 +38,21 @@ namespace BlogPessoal.Web.Controllers
                     t.Senha.Equals(usuario.Senha)).FirstOrDefault();
             if (autorLogado != null)
             {
-                FormsAuthentication.SetAuthCookie(autorLogado.Email, true);
-                AdicionarCookieLogin(autorLogado.Email);
+                var roles = autorLogado.Administrador ? "Admin" : "User";
+
+                var authTicket = new FormsAuthenticationTicket(
+                     1,
+                     autorLogado.Email,
+                     DateTime.Now,
+                     DateTime.Now.AddDays(1),
+                     false,
+                     roles,
+                     "/");
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+                Response.Cookies.Add(cookie);
+
+                //FormsAuthentication.SetAuthCookie(autorLogado.Email, true);
+                //AdicionarCookieLogin(autorLogado.Email);
                 return RedirectToLocal();
             }
             return View("Index");

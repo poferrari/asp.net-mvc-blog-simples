@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using BlogPessoal.Web.Data.Contexto;
+using BlogPessoal.Web.Models.Autores;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using BlogPessoal.Web.Data.Contexto;
-using BlogPessoal.Web.Models.Autores;
 
 namespace BlogPessoal.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AutoresController : Controller
     {
         private BlogPessoalContexto db = new BlogPessoalContexto();
@@ -43,6 +39,9 @@ namespace BlogPessoal.Web.Controllers
             return View();
         }
 
+        // POST: Autores/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]

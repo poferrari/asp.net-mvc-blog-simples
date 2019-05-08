@@ -62,7 +62,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextoTest.cs" />
+    <Compile Include="CategoriaDeArtigoTest.cs" />
+    <Compile Include="CategoriasDeArtigoControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

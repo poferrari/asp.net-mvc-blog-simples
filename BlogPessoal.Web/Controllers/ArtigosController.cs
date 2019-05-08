@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BlogPessoal.Web.Controllers
 {
-    [Authorize]
+    [Authorize]    
     public class ArtigosController : Controller
     {
         private BlogPessoalContexto db = new BlogPessoalContexto();
@@ -21,6 +21,19 @@ namespace BlogPessoal.Web.Controllers
         [AllowAnonymous]
         [OutputCache(Duration = 20, VaryByParam = "id")]
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Artigo artigo = db.Artigos.Find(id);
+            if (artigo == null)
+                return HttpNotFound();
+            return View(artigo);
+        }
+
+        [AllowAnonymous]
+        [OutputCache(Duration = 20, VaryByParam = "id")]
+        [Route("Artigos/{ano}/{mes}/{dia}/{nome}/{id}")]
+        public ActionResult Detalhes(int ano, int mes, int dia, string nome, int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

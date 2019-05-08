@@ -6,14 +6,16 @@
     <title>@ViewBag.Title - Blog Pessoal</title>
 
     @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-      <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-      <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @RenderSection("StyleContent", required: false)
+    @Html.Partial("_ScriptAppInsights")
+    @Html.Partial("_ScriptRollbar")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -81,5 +83,9 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("ScriptContent", required: false)
+
+    <script type="text/javascript">
+        window.onerror("TestRollbarError: teste window.onerror", window.location.href)
+    </script>
 </body>
 </html>

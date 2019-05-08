@@ -63,7 +63,11 @@
         </dd>
 
     </dl>
-    
+
+    @{
+        var teste = Html.Partial("_CategoriaDetalhes", Model.CategoriaDeArtigo);        
+    }
+
     @{
         Html.RenderPartial("_CategoriaDetalhes", Model.CategoriaDeArtigo);
     }

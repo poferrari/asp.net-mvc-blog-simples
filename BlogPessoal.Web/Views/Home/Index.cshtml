@@ -1,4 +1,6 @@
-﻿
+﻿@using BlogPessoal.Web.Models.Artigos
+@using BlogPessoal.Web.Utilitarios
+
 @{
     ViewBag.Title = "Index";
 }
@@ -13,3 +15,31 @@
     A hora corrente é: @DateTime.Now.ToString("T")
 </div>
 
+<div>
+    @ViewBag.Artigos
+</div>
+
+<fieldset>
+    <legend>Últimos artigos</legend>
+    <ul>
+        @{
+            List<Artigo> ultimosArtigos = ViewBag.UltimosArtigos;
+
+            foreach (var artigo in ultimosArtigos)
+            {
+                <li>
+                    @artigo.DataPublicacao.ToShortDateString()
+                    <span> - </span>
+                    @Html.ActionLink(artigo.Titulo, "Detalhes", "Artigos", new
+               {
+                   ano = artigo.DataPublicacao.Year,
+                   mes = artigo.DataPublicacao.Month,
+                   dia = artigo.DataPublicacao.Day,
+                   nome = TrataNome.ReescreverNome(artigo.Titulo),
+                   id = artigo.Id
+               }, null) 
+                </li>
+            }
+        }
+    </ul>
+</fieldset>

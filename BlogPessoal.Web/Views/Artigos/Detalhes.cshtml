@@ -1,0 +1,38 @@
+﻿@model BlogPessoal.Web.Models.Artigos.Artigo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div itemscope itemtype="http://schema.org/Article">
+
+    <h1 itemprop="name">
+        @Html.DisplayFor(model => model.Titulo)
+    </h1>
+    <h4>
+        <time itemprop="datePublished">@Html.DisplayFor(model => model.DataPublicacao)</time>
+        Por
+        <span itemprop="author">
+            @Html.DisplayFor(model => model.Autor.Nome)
+        </span>
+    </h4>
+
+    <hr />
+
+    <div itemprop="articleBody">
+        <p> @Html.DisplayFor(model => model.Conteudo)</p>
+    </div>
+   
+    @{
+        Html.RenderPartial("_CategoriaDetalhes", Model.CategoriaDeArtigo);
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    A hora corrente é: @DateTime.Now.ToString("T")
+</div>

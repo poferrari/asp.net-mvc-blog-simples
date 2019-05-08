@@ -14,6 +14,9 @@ namespace BlogPessoal.Web.Controllers
         private const int TotalPorPagina = 5;
         private BlogPessoalContexto db = new BlogPessoalContexto();
 
+        //[CompressFilter]
+        //[WhitespaceFilter]
+        //[OutputCache(Duration = 1000, VaryByParam = "none")]
         public ActionResult Index()
         {            
             var lista = db.CategoriasDeArtigo
@@ -37,6 +40,8 @@ namespace BlogPessoal.Web.Controllers
             return View();
         }
 
+        //[RequireHttps]
+        //[ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(CategoriaDeArtigo categoria)
         {
